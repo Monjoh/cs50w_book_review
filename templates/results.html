@@ -1,0 +1,44 @@
+{% extends "layout.html" %} {% block title %} Search {% endblock %} {% block body %}
+<br>
+<div class="d-sm-flex row justify-content-center" style="height:100%">
+    <h1 class="mb-0 text-gray-800">Search</h1>
+</div>
+<p></p>
+
+<div class="row justify-content-center">
+    <form action="/search" method="post">
+        <div class="form-group col-md">
+            <input autocomplete="off" autofocus class="form-control" name="reference" placeholder="Book, ISBN, Title" type="text">
+        </div>
+        <button class="btn btn-outline-dark col-md" type="submit">Search</button>
+    </form>
+    <br>
+    <p>{{ error }}</p>
+</div>
+
+<div class="d-sm-flex row justify-content-center" style="height:100%; margin-top: 8%;">
+    <h1 class="mb-0 text-gray-800">Search Results</h1>
+</div>
+<br>
+<div class="container">
+    <div class="row justify-content-around">
+        {% for book in books %}
+        <div class="card border-dark mb-3" style="width: 12rem;">
+            <div class="card-header">
+                <h5>{{book['title']}}</h5>
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">{{book['author']}}</h5>
+                <h6 class="car-text">{{book['year']}}</h6>
+                <h6 class="car-text">{{book['isbn']}}</h6>
+            </div>
+            <div class="card-footer">
+                <a href="/book/{{book['isbn']}}" class="btn btn-outline-drk col-sm">Details</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+{% endblock %}

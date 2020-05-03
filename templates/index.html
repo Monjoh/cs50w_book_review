@@ -1,0 +1,21 @@
+{% extends "layout.html" %} {% block title %} J's Book Review {% endblock %} {% block body %}
+<div class="row">
+    <div class="col-lg-6 col-sm-12 align-self-center" style="left: 18px;">
+        <img id="logo_picture" src="{{url_for('static', filename='images/logo_book.png')}}" alt="logo">
+    </div>
+    <div class="col-lg-6 col-sm-12 align-self-center" style="top: 16px">
+        <div class="text-center">
+            <h1>J's Book Review</h1>
+        </div>
+        <div class="text-justify">
+            <p>Welcome to J's Book Review, this website allows you to search for books, rate them and see the ratings of other users in case you'd like to purchase one. As Mr. Alex Turner would say, Take it easy of a little while, come one stay with us,
+                it's such an easy read, Interesting new books keeping popping up, Since the printing it's all getting gentrified, I put a sign on the cover, It was well reviewed, Fooour Start out of Fiiiiiive !
+                <p>
+                    <div class="text-center">
+                        <a class="btn btn-outline-dark btn-lg" href="/login" role="button">Sign In</a>
+                        <a class="btn btn-outline-dark btn-lg" href="/register" role="button">Register</a>
+                    </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

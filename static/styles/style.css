@@ -1,0 +1,23 @@
+/* Ensures content is not hidden behind navbar */
+
+body {
+    padding-top: 200px;
+}
+
+#logo_picture {
+    margin: auto;
+    width: 75%;
+}
+
+#nav_picture {
+    margin-right: 20px;
+    width: 35px;
+}
+
+#menu_button {
+    color: aliceblue;
+}
+
+.card-body {
+    text-align: start;
+}

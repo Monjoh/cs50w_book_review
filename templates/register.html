@@ -1,0 +1,22 @@
+{% extends "layout.html" %} {% block title %} Register {% endblock %} {% block body %}
+<br>
+<div class="d-sm-flex row justify-content-center" style="height:100%">
+    <h1 class="mb-0 text-gray-800">Register</h1>
+</div>
+<p></p>
+
+<div class="row justify-content-center">
+    <form action="" method="post">
+        <div class="form-group col-md">
+            <input autocomplete="off" autofocus class="form-control" name="username" placeholder="Username" type="text">
+        </div>
+        <div class="form-group col-md">
+            <input class="form-control" name="password" placeholder="Password" type="password">
+        </div>
+        <button class="btn btn-outline-dark col-md" type="submit">Register</button>
+    </form>
+</div>
+<br>
+<p>{{ error }}</p>
+
+{% endblock %}

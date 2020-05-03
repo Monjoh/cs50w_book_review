@@ -1,0 +1,103 @@
+{% extends "layout.html" %} {% block title %} {{db_info[2]}} {% endblock %} {% block body %}
+
+<div class="row">
+    <div class="col-sm-2">
+        <img src="http://covers.openlibrary.org/b/isbn/{{db_info[1]}}-M.jpg" width="130px">
+    </div>
+    <div class="col-sm-4">
+        <h1>{{db_info[2]}}</h1>
+        <h5>Author: {{db_info[3]}}</h5>
+        <h5>Published year: {{db_info[4]}}</h5>
+        <h5>ISBN: {{db_info[1]}}</h5>
+    </div>
+    <div class="col-sm-4">
+        <h2>GOODREAD:</h2>
+        <h5>Ratings: {{gr_info['work_ratings_count']}}</h5>
+        <h5>Average ratings: {{gr_info['average_rating']}}</h5>
+    </div>
+</div>
+
+<div class="row justify-content-center" style="margin-top: 10%;">
+    <p>{{ error }}</p>
+</div>
+<div class="row justify-content-end">
+    <div class="col-3">
+        <a href="/search" class="btn btn-secondary">Search another book</a>
+    </div>
+</div>
+<br>
+<div class="row justify-content-center">
+    <h2>Reviews:</h2>
+</div>
+<form method="POST">
+    <label for='rating'>Your rating :</label>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="rating" id="inlineRadio1" value="1">
+        <label class="form-check-label" for="rating">1</label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="rating" id="inlineRadio1" value="2">
+        <label class="form-check-label" for="rating">2</label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="rating" id="inlineRadio1" value="3" checked>
+        <label class="form-check-label" for="rating">3</label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="rating" id="inlineRadio1" value="4">
+        <label class="form-check-label" for="rating">4</label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="rating" id="inlineRadio1" value="5">
+        <label class="form-check-label" for="rating">5</label>
+    </div>
+    <div class="form-group">
+        <label for="comment">Review comment:</label>
+        <textarea class="form-control" id="comment" name="comment" rows="3"></textarea>
+    </div>
+    <div class="row">
+        <div class="col align-self-end">
+            <button class="btn btn-outline-dark" type="submit">Submit review</button>
+        </div>
+    </div>
+
+</form>
+<br>
+<div class="row justify-content-center">
+    <h2>User reviews</h2>
+</div>
+{% if reviews|length > 0 %} {% for review in reviews %}
+<div class="card shadow p-3 mb-5 bg-white rounded" style="margin-bottom: 0.5%;">
+    <div class="card-header">
+        <div class="row">
+            <div class="col-10">
+                <h6 class="card-title">{{review['username']}}:</h6>
+            </div>
+            <div class="col-2">
+                <h6 class="card-text text-right">Rating : {{review['rating']}} / 5</h6>
+            </div>
+        </div>
+
+    </div>
+    <div class="card-body">
+        {% if review['comment'] == None %}
+        <h7 class="cart-text"> </h7>
+        {% else %}
+        <h7 class="cart-text">{{review['comment']}}</h7>
+        {% endif %}
+    </div>
+</div>
+{% endfor %} {% else %}
+<div class="card shadow p-3 mb-5 bg-white rounded" style="margin-bottom: 0.5%;">
+    <div class="card-header">
+        <div class="row">
+            <div class="col-10">
+                <h6 class="card-title">Be the first one to review this book !</h6>
+            </div>
+        </div>
+    </div>
+    <div class="card-body">
+        <h7 class="cart-text"> </h7>
+    </div>
+</div>
+{% endif %} {% endblock %}
