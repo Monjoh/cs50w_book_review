@@ -8,9 +8,9 @@ from functools import wraps
 from werkzeug.security import check_password_hash, generate_password_hash
 import requests
 
-from helpers import login_required
 
 app = Flask(__name__)
+
 
 '''
 Steps to do to make it work:
@@ -41,6 +41,19 @@ Session(app)
 # Set up database
 engine = create_engine(os.getenv("DATABASE_URL"))
 db = scoped_session(sessionmaker(bind=engine))
+
+
+def login_required(f):
+    """
+    Decorate routes to require login.
+    http://flask.pocoo.org/docs/1.0/patterns/viewdecorators/
+    """
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        if session.get("user_id") is None:
+            return redirect("/login")
+        return f(*args, **kwargs)
+    return decorated_function
 
 
 @app.route("/")
